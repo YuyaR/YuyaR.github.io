@@ -14,7 +14,7 @@ from datetime import datetime
 #AIzaSyBStwZGDooSga5dsl0pg4vczeqVTd_jIE8
     
 def locate(location):
-    parameter = {"address":location,"key":"AIzaSyBStwZGDooSga5dsl0pg4vczeqVTd_jIE8"}
+    parameter = {"address":location,"key":"GOOGLE_API_KEY"}
     result = rq.get("https://maps.googleapis.com/maps/api/geocode/json",params=parameter)
     resultText = eval(result.text)
     find = resultText["results"][0]["geometry"]["location"]
@@ -23,7 +23,7 @@ def locate(location):
 
 def callweather(location):
     lat, lon = locate(location)
-    condition = {"lat":lat,"lon":lon,"appid":"041702d872073809f2cc819b1806bce8"}
+    condition = {"lat":lat,"lon":lon,"appid":"OPENWEATHERMAP_API_KEY"}
     response = rq.get('https://api.openweathermap.org/data/2.5/onecall',params=condition)
     responsetext = eval(response.text)
     return(responsetext)
